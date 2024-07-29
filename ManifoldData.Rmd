@@ -28,12 +28,14 @@ file.info("/Users/jiatonghan/Downloads/Manifold Data/manifold-comments-20240706h
 
 ### Bet data
 ```{r}
-data.bets <- jsonlite::read_json("/Users/jiatonghan/Downloads/Manifold Data/bets.json") # take hours to run, 37.6GB
+# data.bets <- jsonlite::read_json("/Users/jiatonghan/Downloads/Manifold Data/bets.json") # take hours to run, 37.6GB
 # list of 9115727 elements
 
-data.bets.top10k <- data.bets[1:10000]
+# data.bets.top10k <- data.bets[1:10000]
+
 # save(data.bets.top10k, file = "data.bets.top10k.RData")
-# load("~/Downloads/Manifold Data/data.bets.top10k.RData")
+
+load("~/Downloads/Manifold Data/ManifoldData/data.bets.top10k.RData")
 str(data.bets.top10k[1:10])
 
 
@@ -46,13 +48,13 @@ print(df.bets.top10k)
 ### Contracts data
 ```{r}
 # Load the data
-data.contracts <- jsonlite::read_json("/Users/jiatonghan/Downloads/Manifold Data/manifold-contracts-20240706.json")
+# data.contracts <- jsonlite::read_json("/Users/jiatonghan/Downloads/Manifold Data/manifold-contracts-20240706.json")
 # list of 130091 
 
-data.contracts.top10k <- data.contracts[1:10000]
+# data.contracts.top10k <- data.contracts[1:10000]
 
 # save(data.contracts.top10k, file = "data.contracts.top10k.RData")
-# load("~/Downloads/Manifold Data/data.contracts.top10k.RData")
+load("~/Downloads/Manifold Data/ManifoldData/data.contracts.top10k.RData")
 
 str(data.contracts.top10k[1:5])
 
@@ -70,18 +72,19 @@ str(df.contracts.top10k)
 ### Comment data
 ```{r}
 # Load the data
-data.comments <- jsonlite::read_json("/Users/jiatonghan/Downloads/Manifold Data/manifold-comments-20240706hi.json")
+# data.comments <- jsonlite::read_json("/Users/jiatonghan/Downloads/Manifold Data/manifold-comments-20240706hi.json")
 # list of 528693
 
-data.comments.top10k <- data.comments[1:10000]
+# data.comments.top10k <- data.comments[1:10000]
 # save(data.comments.top10k, file = "data.comments.top10k.RData")
-# load("~/Downloads/Manifold Data/data.comments.top10k.RData")
+load("~/Downloads/Manifold Data/ManifoldData/data.comments.top10k.RData")
 
 # convert the list to a data frame
 df.comments.top10k <- map_dfr(data.comments.top10k, function(x) {
   as.data.frame(t(unlist(x)))
 })
 
-str(df.comments.top10k[1:5])
+str(df.comments.top10k[1:5,])
 
 ```
+
